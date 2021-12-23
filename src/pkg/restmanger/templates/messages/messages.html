@@ -1,0 +1,92 @@
+<h2 class="text-center">encrypt/decrypt message</h2>
+<hr>
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                            encrypt message
+                        </div>
+                        <div class="card-body">
+                            <form action="/messages/encrypt">
+                                <div class="form-group">
+                                    <label for="name">public key:</label>
+                                    <select class="form-control" id="id" name="id" aria-describedby="pubKeyHelp">
+                                        {{range .Contacts}}
+                                            <option value="{{ .ID }}">{{ .Name }}</option>
+                                        {{end}}
+                                    </select>
+                                    <label for="emessage">message</label>
+                                    <textarea rows="10" name="emessage" placeholder="text to be encrypted..."
+                                              aria-describedby="messageHelp" class="form-control" id="emessage"
+                                              name="emessage"></textarea>
+                                    <small id="messageHelp" class="form-text text-muted">message to be encrypted with
+                                        the
+                                        selected public key</small>
+                                </div>
+                                <button type="submit" class="btn btn-dark">Encrypt</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                            decrypt message
+                        </div>
+                        <div class="card-body">
+                            <form id="form-decrypt" action="/messages/decrypt">
+                                <div class="form-group">
+                                    <label for="id">private key:</label>
+                                    <select class="form-control" id="id" name="id" aria-describedby="pubKeyHelp">
+                                        {{range .Keys}}
+                                            <option value="{{ .ID }}">{{ .Name }}</option>
+                                        {{end}}
+                                    </select>
+                                    <label for="passphrase">passphrase</label>
+                                    <input type="password" class="form-control" id="passphrase"
+                                           placeholder="passphrase for private key" name="passphrase" value="">
+                                    <label for="message">message</label>
+                                    <textarea rows="7" cols="20" name="message" placeholder="text to be decrypted..."
+                                              aria-describedby="messageHelp" class="form-control" id="message"
+                                              name="message"></textarea>
+                                    <small id="messageHelp" class="form-text text-muted">message to be decrypted with
+                                        the
+                                        selected private key</small>
+                                </div>
+                                <button type="submit" class="btn btn-dark" onclick="">Decrypt</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<hr>
+<h2 class="text-center">{{.PageTitle}}</h2>
+<div class="container" id="#message">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-header">
+                        PGP Message
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><textarea rows="30" style=" width: 100%;
+     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;">{{ .Message }}</textarea></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "footer.html"}}

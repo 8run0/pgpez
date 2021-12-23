@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {{ if .DarkMode }}
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css" />
+    {{ else }}
+    <link rel="stylesheet" href="https://bootswatch.com/5/cerulean/bootstrap.css" />
+    {{ end }}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>{{.PageTitle}}</title>
+</head>
+
+<body>
+    <div>
+
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/">PGPEZ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {{ if .MenuActive }}
+            <div class="navbar-collapse collapse show" id="navbarColor01" style="">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{ if .KeysActive }} active {{ end }}" href="/keys">Keys</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ if .ContactsActive }} active {{ end }}" href="/contacts">Contacts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ if .MessagesActive }} active {{ end }}" href="/messages">Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lock">Lock</a>
+                    </li>
+                </ul>
+            </div>
+            {{ end }}
+            <a href="/dm"><span class="badge badge-light badge-pill float right">{{ if .DarkMode }}<i
+                        class="fa fa-sun-o fa-2x" aria-hidden="true"></i>{{else}}<i class="fa fa-moon-o fa-2x"
+                        aria-hidden="true"></i>{{end}}</span></a>
+
+
+        </nav>
+
+    </div>
+    <hr>

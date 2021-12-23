@@ -1,0 +1,70 @@
+<h2 class="text-center">contacts management</h2>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        create new contact:
+                    </div>
+                    <div class="card-body">
+                        <form action="/contacts" method="post">
+                            <input type="text" hidden class="form-control" name="action" id="action" value="POST"/>
+                            <div class="form-group">
+                                <label for="name">contact name:</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                                       value=""
+                                       aria-describedby="nameHelp">
+                                <small id="nameHelp" class="form-text text-muted">name of the contact to associate with the public key</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="pubkey">public key:</label>
+                                <textarea rows="7" cols="20" class="form-control" id="pubkey" name="pubkey" placeholder="public key"
+                                          value=""
+                                          aria-describedby="pubkeyHelp"></textarea>
+                                <small id="pubkeyHelp" class="form-text text-muted">the public key</small>
+                            </div>
+                            <button type="submit" class="btn btn-dark">create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        current contacts ({{.ContactCount}}):
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {{range .Contacts}}
+                                <li class="list-group-item">
+                                       <div class="row">
+                                        <div class="col-sm">{{.Name}}</div>
+                                        <div class="col-sm">
+                                            <form action="/contacts" method="post">
+                                                <input type="text" hidden name="id" id="id" value="{{.ID}}"/>
+                                                <input type="text" hidden name="action" id="action" value="DELETE"/>
+                                                <div class="row">
+                                                    <div class="col-sm">
+                                                        <button type="submit" class="float-right btn btn-dark">delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            {{end}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "footer.html" }}
+
+

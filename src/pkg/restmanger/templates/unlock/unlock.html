@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 class="text-center">create new key database</h2>
+    <div class="card border-primary mb-3 mb-3">
+        <div class="card-body">
+            <form action="/new" method="get">
+                <label for="name">name of keys db</label>
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp">
+                <small id="nameHelp" class="form-text text-muted">name of your new keys database</small>
+                <label for="passphrase">passphrase:</label>
+                <input type="password" class="form-control" id="passphrase" name="passphrase" placeholder="Passphrase"
+                    value="" aria-describedby="passHelp">
+                <small id="passHelp" class="form-text text-muted">Passphrase to unlock the keys.db</small>
+                <button type="submit" class="btn btn-outline-success float-right">new</button>
+            </form>
+        </div>
+    </div>
+    <h2 class="text-center">unlock key database management</h2>
+    <div class="card border-primary mb-3 mb-3">
+        <div class="card-body">
+            <form action="/unlock" enctype="multipart/form-data" method="post">
+                <input type="text" hidden class="form-control" name="action" id="action" value="POST" />
+                <div class="form-group">
+                    <label for="path">path to file:</label>
+                    <input type="file" multiple="multiple" id="filepath" name="filepath">
+                    <input type="text" class="form-control" id="path" name="path" value="{{.CurrentDir}}"
+                        aria-describedby="pathHelp">
+                    <small id="pathHelp" class="form-text text-muted">path to the encrypted keys.db file</small>
+                </div>
+                <div class="form-group">
+                    <label for="passphrase">passphrase:</label>
+                    <input type="password" class="form-control" id="passphrase" name="passphrase"
+                        placeholder="Passphrase" value="" aria-describedby="passHelp">
+                    <small id="passHelp" class="form-text text-muted">Passphrase to unlock the keys.db</small>
+                </div>
+                <button type="submit" class="btn btn-outline-success float-right">unlock</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{ template "footer.html" }}

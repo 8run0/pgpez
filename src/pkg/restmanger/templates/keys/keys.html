@@ -1,0 +1,57 @@
+<div id="welcomesm" class="container">
+    <h2 class="text-center">Key Management</h2>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="container">
+                <div class="card border-primary mb-3 mb-3">
+                    <div class="card-header">
+                        Create New Key Pair
+                    </div>
+                    <div class="card-body">
+                        <form action="/keys" method="post">
+                            <input type="text" hidden class="form-control" name="action" id="action" value="POST"/>
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                                       value=""
+                                       aria-describedby="nameHelp">
+                                <small id="nameHelp" class="form-text text-muted">Name of the key pair</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="passphrase">Passphrase:</label>
+                                <input type="password" class="form-control" id="passphrase" name="passphrase"
+                                       placeholder="Passphrase"
+                                       value="" aria-describedby="passHelp">
+                                <small id="passHelp" class="form-text text-muted">Passphrase to lock the key</small>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success float-right">Create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="container">
+                <div class="card border-primary mb-3">
+                    <div class="card-header">
+                        Key Pairs ({{.KeyCount}})
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {{range .Keys}}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{.Name}}
+                                    <a href="/keys/{{.Name}}"><span class="badge badge-info badge-pill float right">View</span></a>
+                                </li>
+                            {{end}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "footer.html" }}

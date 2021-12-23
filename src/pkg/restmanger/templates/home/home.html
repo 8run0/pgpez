@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/ads.css">
+    <title>{{.PageTitle}} - {{.KeyCount}}</title>
+</head>
+<body>
+<h1>{{.PageTitle}}</h1>
+<a href="/">Home</a>
+<a href="/keys">All Keys</a>
+<h1>{{.Name}}</h1>
+<ul>
+    <li>{{.Key.PrivKey}}</li>
+    <li>{{.Key.PubKey}}</li>
+    <li>{{.Key.Base64PubKey}}</li>
+</ul>
+</body>
+</html>
